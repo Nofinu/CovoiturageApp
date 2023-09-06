@@ -1,4 +1,4 @@
-package com.example.gatewayservice.dto;
+package com.example.gatewayservice.dto.AuthDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,7 +7,11 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class LoginDtoRequest {
+public class RegisterDtoRequest {
     private String email;
+    private String lastname;
+    private String firstname;
+    private String phone;
     private String password;
+    private int role;
 }

@@ -1,6 +1,7 @@
 package com.example.userservice.service.impl;
 
 import com.example.userservice.Exception.NotFoundException;
+import com.example.userservice.dto.UserDtoResponse;
 import com.example.userservice.entity.UserApp;
 import com.example.userservice.repository.UserRepository;
 import com.example.userservice.service.UserService;
@@ -16,10 +17,11 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
-    public UserApp findById(int id) {
+    public UserDtoResponse findById(int id) {
         Optional<UserApp> userOptional = userRepository.findById(id);
         if(userOptional.isPresent()){
-            return userOptional.get();
+            UserApp userApp = userOptional.get();
+            return new UserDtoResponse(userApp.getId_user(),userApp.getEmail(),userApp.getLastname(),userApp.getFirstname(),userApp.getPhone(),userApp.getRole().ordinal());
         }
         throw new NotFoundException();
     }

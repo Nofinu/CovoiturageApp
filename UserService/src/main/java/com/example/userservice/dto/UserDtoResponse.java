@@ -1,5 +1,6 @@
-package com.example.gatewayservice.dto;
+package com.example.userservice.dto;
 
+import com.example.userservice.enums.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,12 +8,11 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class RegisterDtoResponse {
-    private int id;
+public class UserDtoResponse {
+    private int id_user;
     private String email;
     private String lastname;
     private String firstname;
     private String phone;
-    private String password;
     private int role;
 }

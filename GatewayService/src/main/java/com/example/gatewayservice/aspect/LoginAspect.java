@@ -1,6 +1,7 @@
 package com.example.gatewayservice.aspect;
 
 import com.example.gatewayservice.tools.RestClient;
+import com.example.gatewayservice.utils.PortApi;
 import jakarta.servlet.http.HttpServletRequest;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Before;
@@ -14,7 +15,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;;
 public class LoginAspect {
     @Before("execution(* com.example.gatewayservice.controller.logedController.*.*(..))")
     public void testToken() {
-        RestClient<String> restClient = new RestClient<>("http://localhost:8084/api/test");
+        RestClient<String> restClient = new RestClient<>("http://localhost:"+ PortApi.portAuth +"/api/test");
         HttpServletRequest servletRequest = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         String token = servletRequest.getHeader("Authorization");
         if(!restClient.testToken(token, String.class)) {

@@ -39,4 +39,12 @@ public class RestClient<T> {
         }
         return null;
     }
+    public T getRequest( Class<T> type) {
+        HttpEntity<String> requestEntity = new HttpEntity<>("",httpHeaders);
+        ResponseEntity<T> response = template.exchange(urlApi, HttpMethod.GET, requestEntity, type);
+        if(response.hasBody()) {
+            return response.getBody();
+        }
+        return null;
+    }
 }

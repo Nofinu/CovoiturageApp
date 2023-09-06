@@ -18,7 +18,6 @@ public class UserApp {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_user;
-
     private String email;
     private String lastname;
     private String firstname;
