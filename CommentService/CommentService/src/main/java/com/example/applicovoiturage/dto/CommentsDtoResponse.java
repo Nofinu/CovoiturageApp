@@ -3,6 +3,9 @@ package com.example.applicovoiturage.dto;
 
 import lombok.*;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,7 +17,7 @@ public class CommentsDtoResponse {
     private int id_carRide;
     private  float note;
     private String comment;
-    private String date;
+    private LocalDate date;
 
 
 }

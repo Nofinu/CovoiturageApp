@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/comments")
+@RequestMapping("/api/comment")
 public class CommentsController {
 
     @Autowired
@@ -20,8 +20,6 @@ public class CommentsController {
 
     @PostMapping("/create")
     public ResponseEntity<CommentsDtoResponse> createComment(@RequestBody CommentsDtoRequest commentsDtoRequest){
-
-        System.out.println(commentsDtoRequest);
         return new ResponseEntity<>(commentsService.createComment(commentsDtoRequest), HttpStatus.CREATED);
     }
     @PostMapping("/update/{id_comment}")

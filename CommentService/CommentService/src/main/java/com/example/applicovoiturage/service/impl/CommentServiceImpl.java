@@ -10,6 +10,7 @@ import com.example.applicovoiturage.utils.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -26,6 +27,36 @@ public class CommentServiceImpl implements CommentsService {
     @Autowired
     private Mapper mapper;
 
+
+    @Override
+    public CommentsDtoResponse createComment(CommentsDtoRequest commentsDtoRequest) {
+        Comment comment = mapper.mapToEntity(commentsDtoRequest);
+        comment.setDate(LocalDate.parse(commentsDtoRequest.getDate()));
+        Comment newComment = commentsRepository.save(comment);
+        return mapper.mapToDto(newComment);
+    }
+
+    @Override
+    public CommentsDtoResponse updateComment(int idComment, CommentsDtoRequest commentsDtoRequest) {
+        Comment comment = getCommentByIdEntity(idComment);
+        comment.setComment(commentsDtoRequest.getComment());
+        comment.setDate(LocalDate.parse(commentsDtoRequest.getDate()));
+        comment.setNote(commentsDtoRequest.getNote());
+        comment.setId_carRide(commentsDtoRequest.getId_carRide());
+        Comment updateComment = commentsRepository.save(comment);
+        return mapper.mapToDto(updateComment);
+    }
+
+    @Override
+    public boolean deleteComment(int idComment) {
+        try{
+            Comment comment = getCommentByIdEntity(idComment);
+            commentsRepository.delete(comment);
+            return true;
+        }catch (Exception ex){
+            throw new RuntimeException();
+        }
+    }
 
     @Override
     public List<CommentsDtoResponse> getAllComment() {
@@ -47,27 +78,6 @@ public class CommentServiceImpl implements CommentsService {
         throw new NotFoundException();
     }
 
-
-
-
-    @Override
-    public CommentsDtoResponse createComment(CommentsDtoRequest commentsDtoRequest) {
-      Comment comment = mapper.mapToEntity(commentsDtoRequest);
-      Comment newComment = commentsRepository.save(comment);
-      return mapper.mapToDto(newComment);
-    }
-
-    @Override
-    public CommentsDtoResponse updateComment(int idComment, CommentsDtoRequest commentsDtoRequest) {
-      Comment comment = getCommentByIdEntity(idComment);
-      comment.setComment(commentsDtoRequest.getComment());
-      comment.setDate(commentsDtoRequest.getDate());
-      comment.setNote(commentsDtoRequest.getNote());
-      comment.setId_carRide(commentsDtoRequest.getId_carRide());
-      Comment updateComment = commentsRepository.save(comment);
-       return mapper.mapToDto(updateComment);
-      }
-
     private Comment getCommentByIdEntity(int idComment) {
         Optional<Comment> comments = commentsRepository.findById(idComment);
         if(comments.isPresent()){
@@ -76,16 +86,7 @@ public class CommentServiceImpl implements CommentsService {
         throw new NotFoundException();
     }
 
-    @Override
-    public boolean deleteComment(int idComment) {
-        try{
-            Comment comment = getCommentByIdEntity(idComment);
-            commentsRepository.delete(comment);
-            return true;
-        }catch (Exception ex){
-            throw new RuntimeException();
-        }
-    }
+
 
 
 }
