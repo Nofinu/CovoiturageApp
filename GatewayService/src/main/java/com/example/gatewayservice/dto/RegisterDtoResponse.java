@@ -1,19 +1,18 @@
-package com.example.authentication.dto;
+package com.example.gatewayservice.dto;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class RegisterResponseDto {
+public class RegisterDtoResponse {
     private int id;
     private String email;
     private String lastname;
     private String firstname;
     private String phone;
+    private String password;
     private int role;
 }

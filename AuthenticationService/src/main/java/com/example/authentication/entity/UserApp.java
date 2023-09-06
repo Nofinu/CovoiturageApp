@@ -16,6 +16,7 @@ public class UserApp {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_user;
 
+    @Column(unique = true)
     private String email;
     private String lastname;
     private String firstname;

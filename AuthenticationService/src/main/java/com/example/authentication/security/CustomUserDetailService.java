@@ -26,14 +26,14 @@ public class CustomUserDetailService implements UserDetailsService {
         this.userAppRepository = userAppRepository;
     }
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<UserApp> userAppOptional = userAppRepository.findByEmail(username);
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        Optional<UserApp> userAppOptional = userAppRepository.findByEmail(email);
         if (userAppOptional.isPresent()){
             UserApp userApp = userAppOptional.get();
             Set<GrantedAuthority> authorities = new HashSet<>();
             authorities.add(new SimpleGrantedAuthority("user"));
             return new User(userApp.getEmail(), userApp.getPassword(),authorities);
         }
-        throw new NotFoundException();
+        return null;
     }
 }

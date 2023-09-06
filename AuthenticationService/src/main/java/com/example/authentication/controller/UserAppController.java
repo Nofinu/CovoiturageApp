@@ -3,6 +3,8 @@ package com.example.authentication.controller;
 
 import com.example.authentication.dto.*;
 import com.example.authentication.entity.UserApp;
+import com.example.authentication.exception.NotFoundException;
+import com.example.authentication.exception.UserAlreadyExistException;
 import com.example.authentication.security.JWTGenerator;
 import com.example.authentication.service.UserAppService;
 import org.springframework.http.ResponseEntity;
@@ -33,24 +35,20 @@ public class UserAppController {
 
 
     @PostMapping("login")
-    public ResponseEntity<LoginResponseDto> login(@RequestBody LoginRequestDto loginRequestDTO) {
+    public ResponseEntity<LoginResponseDto> login(@RequestBody LoginRequestDto loginRequestDTO) throws NotFoundException {
         try {
             Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequestDTO.getEmail(), loginRequestDTO.getPassword()));
             SecurityContextHolder.getContext().setAuthentication(authentication);
             return ResponseEntity.ok(LoginResponseDto.builder().token(generator.generateToken(authentication)).build());
         }catch (Exception ex) {
-            throw new RuntimeException();
+            throw new NotFoundException();
         }
     }
 
     @PostMapping("register")
-    public ResponseEntity<RegisterResponseDto> register(@RequestBody RegisterRequestDto registerRequestDTO) {
-        try {
-            registerRequestDTO.setPassword(passwordEncoder.encode(registerRequestDTO.getPassword()));
-            UserApp userApp = userAppService.enregistrerUtilisateur(registerRequestDTO);
-            return ResponseEntity.ok(RegisterResponseDto.builder().id(userApp.getId_user()).email(userApp.getEmail()).lastname(userApp.getLastname()).firstname(userApp.getFirstname()).phone(userApp.getPhone()).role(userApp.getRole().toString()).build());
-        }catch (Exception ex) {
-            throw new RuntimeException();
-        }
+    public ResponseEntity<RegisterResponseDto> register(@RequestBody RegisterRequestDto registerRequestDTO) throws UserAlreadyExistException {
+        registerRequestDTO.setPassword(passwordEncoder.encode(registerRequestDTO.getPassword()));
+        UserApp userApp = userAppService.enregistrerUtilisateur(registerRequestDTO);
+        return ResponseEntity.ok(RegisterResponseDto.builder().id(userApp.getId_user()).email(userApp.getEmail()).lastname(userApp.getLastname()).firstname(userApp.getFirstname()).phone(userApp.getPhone()).role(userApp.getRole().ordinal()).build());
     }
 }
