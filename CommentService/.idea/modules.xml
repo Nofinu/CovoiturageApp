@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/applicovoiturage.iml" filepath="$PROJECT_DIR$/.idea/applicovoiturage.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/CommentService.iml" filepath="$PROJECT_DIR$/.idea/CommentService.iml" />
     </modules>
   </component>
 </project>

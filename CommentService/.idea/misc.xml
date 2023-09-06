@@ -5,6 +5,7 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/applicovoiturage/pom.xml" />
+        <option value="$PROJECT_DIR$/CommentService/pom.xml" />
       </list>
     </option>
   </component>
