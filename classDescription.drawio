@@ -1,0 +1,52 @@
+<mxfile host="app.diagrams.net" modified="2023-09-06T12:26:49.770Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36" etag="ckxIOOIurfR25uhsMi5b" version="21.7.2" type="device">
+  <diagram name="Page-1" id="yt8qZuHzORfMrn-P9UZN">
+    <mxGraphModel dx="1820" dy="1824" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="rnVSoHv5j1S1c1L_8Rnp-1" value="" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="-790" y="-10" width="730" height="470" as="geometry" />
+        </mxCell>
+        <mxCell id="mIQOjdDoEMIQcKgDkukB-1" value="User" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-290" y="30" width="220" height="380" as="geometry" />
+        </mxCell>
+        <mxCell id="mIQOjdDoEMIQcKgDkukB-2" value="private int idUser&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;private string firstname&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;private string lastname&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;private string email&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;private string phoneNumber&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;private string password&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;private Role role&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;private string image_url" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="mIQOjdDoEMIQcKgDkukB-1" vertex="1">
+          <mxGeometry y="26" width="220" height="124" as="geometry" />
+        </mxCell>
+        <mxCell id="mIQOjdDoEMIQcKgDkukB-3" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="mIQOjdDoEMIQcKgDkukB-1" vertex="1">
+          <mxGeometry y="150" width="220" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="mIQOjdDoEMIQcKgDkukB-4" value="public getIdUser (): int&lt;br&gt;public setIdUser(int): void&lt;br&gt;public getFirstname (): String&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;public setFirstname(string): void&lt;br&gt;public getLastname (): string&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;public setLastname(string): void&lt;br&gt;public getEmail (): string&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;public setEmail(string): void&lt;br&gt;public getPhoneNumber (): string&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;public setPhoneNumber(string): void&lt;br&gt;public getRole (): int&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;public setRole(int): void&lt;br&gt;public getImageUrl(): string&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;public setImageUrl(string): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="mIQOjdDoEMIQcKgDkukB-1" vertex="1">
+          <mxGeometry y="168" width="220" height="212" as="geometry" />
+        </mxCell>
+        <mxCell id="mIQOjdDoEMIQcKgDkukB-20" value="CarRide" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-535" y="30" width="220" height="410" as="geometry" />
+        </mxCell>
+        <mxCell id="mIQOjdDoEMIQcKgDkukB-21" value="private int idCarRide&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;private string departPoint&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;private string endPoint&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;private int seat&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;private int duration&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;private date departDate&lt;br&gt;private double price&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;private User user" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="mIQOjdDoEMIQcKgDkukB-20" vertex="1">
+          <mxGeometry y="26" width="220" height="124" as="geometry" />
+        </mxCell>
+        <mxCell id="mIQOjdDoEMIQcKgDkukB-22" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="mIQOjdDoEMIQcKgDkukB-20" vertex="1">
+          <mxGeometry y="150" width="220" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="mIQOjdDoEMIQcKgDkukB-23" value="public getIdCarRide (): int&lt;br&gt;public setIdCarRide(int): void&lt;br&gt;public getDepartPoint (): String&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;public setDepartPoint(string): void&lt;br&gt;public getEndPoint&amp;nbsp;(): string&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;public setIEndPoint(string): void&lt;br&gt;public getSeat (): int&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;public setSeat(int): void&lt;br&gt;public getDuration (): int&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;public setDuration(int): void&lt;br&gt;public getDepartDate (): Date&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;public setIDepartDate(Date): void&lt;br&gt;public getPrice(): double&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;public setPrice(double): void&lt;br&gt;public getUser(): User&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;public getUser(User): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="mIQOjdDoEMIQcKgDkukB-20" vertex="1">
+          <mxGeometry y="168" width="220" height="242" as="geometry" />
+        </mxCell>
+        <mxCell id="mIQOjdDoEMIQcKgDkukB-24" value="CarRide" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-780" y="30" width="220" height="340" as="geometry" />
+        </mxCell>
+        <mxCell id="mIQOjdDoEMIQcKgDkukB-25" value="private int idComment&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;private string comment&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;private float grade&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;private User userPost&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;private CarRide carRide&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;private date postDate" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="mIQOjdDoEMIQcKgDkukB-24" vertex="1">
+          <mxGeometry y="26" width="220" height="104" as="geometry" />
+        </mxCell>
+        <mxCell id="mIQOjdDoEMIQcKgDkukB-26" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="mIQOjdDoEMIQcKgDkukB-24" vertex="1">
+          <mxGeometry y="130" width="220" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="mIQOjdDoEMIQcKgDkukB-27" value="public getIdComment (): int&lt;br&gt;public setIdomment(int): void&lt;br&gt;public getComment (): String&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;public setComment(string): void&lt;br&gt;public getGrade(): float&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;public setIGrade(float): void&lt;br&gt;public getUserPost (): User&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;public setUserPost(User): void&lt;br&gt;public getCarRIde (): CarRide&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;public setCarRIde(CarRide): void&lt;br&gt;public getPostDate (): Date&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;public setIPostDate(Date): void&lt;br&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="mIQOjdDoEMIQcKgDkukB-24" vertex="1">
+          <mxGeometry y="148" width="220" height="192" as="geometry" />
+        </mxCell>
+        <mxCell id="rnVSoHv5j1S1c1L_8Rnp-5" value="Entity" style="text;align=center;fontStyle=1;verticalAlign=middle;spacingLeft=3;spacingRight=3;strokeColor=none;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="-780" y="10" width="80" height="20" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

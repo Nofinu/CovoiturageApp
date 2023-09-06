@@ -63,6 +63,7 @@ public class CommentServiceImpl implements CommentsService {
       comment.setComment(commentsDtoRequest.getComment());
       comment.setDate(commentsDtoRequest.getDate());
       comment.setNote(commentsDtoRequest.getNote());
+      comment.setId_carRide(commentsDtoRequest.getId_carRide());
       Comment updateComment = commentsRepository.save(comment);
        return mapper.mapToDto(updateComment);
       }

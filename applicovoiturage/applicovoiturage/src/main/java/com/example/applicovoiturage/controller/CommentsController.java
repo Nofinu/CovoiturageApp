@@ -24,25 +24,25 @@ public class CommentsController {
         System.out.println(commentsDtoRequest);
         return new ResponseEntity<>(commentsService.createComment(commentsDtoRequest), HttpStatus.CREATED);
     }
-    @PutMapping("/update")
+    @PostMapping("/update/{id_comment}")
     public ResponseEntity<CommentsDtoResponse> updateComment(@PathVariable(value = "id_comment")int id_comment,
                                                             @RequestBody CommentsDtoRequest commentsDtoRequest){
         return new ResponseEntity<>(commentsService.updateComment(id_comment,commentsDtoRequest),HttpStatus.OK);
 
     }
-    @DeleteMapping("/delete")
-    public ResponseEntity<String> deleteComment(@PathVariable(value = "id_comments")int id_comment){
+    @GetMapping("/delete/{id_comment}")
+    public ResponseEntity<String> deleteComment(@PathVariable(value = "id_comment")int id_comment){
        if(commentsService.deleteComment(id_comment)){
            return new ResponseEntity<>("Comment delete ",HttpStatus.OK);
        }
        return new ResponseEntity<>("Error durring deletion",HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @GetMapping("/commentById")
+    @GetMapping("/{id_comment}")
     public ResponseEntity<CommentsDtoResponse> getCommentById(@PathVariable(value = "id_comment")int id_comment){
         return new ResponseEntity<>(commentsService.getCommentById(id_comment),HttpStatus.OK);
     }
-    @GetMapping("/AllCommentById")
+    @GetMapping("")
     public ResponseEntity<List<CommentsDtoResponse>> getAllPComment(){
         return new ResponseEntity<>(commentsService.getAllComment(), HttpStatus.OK);
     }
