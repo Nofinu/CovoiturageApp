@@ -25,7 +25,6 @@ public class Mapper {
         ModelMapper mapper = new ModelMapper();
         CarRide carRide = mapper.map(carRideDtoRequest, CarRide.class);
 
-        return  carRide;
-
-
+        return carRide;
     }
+}
