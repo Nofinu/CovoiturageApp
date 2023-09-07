@@ -11,7 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/comment/")
+@RequestMapping("api/comment")
 public class CommentEditController {
 
     private ObjectMapper om;
@@ -19,21 +19,21 @@ public class CommentEditController {
     public CommentEditController() {
         this.om = new ObjectMapper();
     }
-    @PostMapping("create")
+    @PostMapping("/create")
     public ResponseEntity<CommentDtoResponse> createComment (@RequestBody CommentDtoRequest commentDtoRequest) throws JsonProcessingException {
         RestClient<CommentDtoResponse> commentDtoResponseRestClient = new RestClient<>("http://localhost:"+ PortApi.portComm +"/api/comment/create");
         CommentDtoResponse commentDtoResponse = commentDtoResponseRestClient.postRequest(om.writeValueAsString(commentDtoRequest), CommentDtoResponse.class);
         return new ResponseEntity<>(commentDtoResponse, HttpStatus.OK);
     }
 
-    @PostMapping("update/{id}")
+    @PostMapping("/update/{id}")
     public ResponseEntity<CommentDtoResponse> updateComment (@RequestBody CommentDtoRequest commentDtoRequest,@PathVariable int id) throws JsonProcessingException {
         RestClient<CommentDtoResponse> commentDtoResponseRestClient = new RestClient<>("http://localhost:"+ PortApi.portComm +"/api/comment/update/"+id);
         CommentDtoResponse commentDtoResponse = commentDtoResponseRestClient.postRequest(om.writeValueAsString(commentDtoRequest), CommentDtoResponse.class);
         return new ResponseEntity<>(commentDtoResponse, HttpStatus.OK);
     }
 
-    @GetMapping("delete/{id}")
+    @GetMapping("/delete/{id}")
     public ResponseEntity<String> deleteComment (@PathVariable int id) throws JsonProcessingException {
         RestClient<String> commentDtoResponseRestClient = new RestClient<>("http://localhost:"+ PortApi.portComm +"/api/comment/delete/"+id);
         String stringResponse = commentDtoResponseRestClient.getRequest( String.class);

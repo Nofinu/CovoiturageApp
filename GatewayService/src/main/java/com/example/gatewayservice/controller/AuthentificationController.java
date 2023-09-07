@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("api/auth/")
+@RequestMapping("api/auth")
 public class AuthentificationController {
 
     private ObjectMapper om;
@@ -27,7 +27,7 @@ public class AuthentificationController {
         this.om = new ObjectMapper();
     }
 
-    @PostMapping("register")
+    @PostMapping("/register")
     public ResponseEntity<LoginDtoResponse> register (@RequestBody RegisterDtoRequest registerDtoRequest) throws JsonProcessingException, UserAlreadyExistException, UserNotFoundException {
         RestClient<RegisterDtoResponse> registerRestClient = new RestClient<>("http://localhost:"+ PortApi.portAuth +"/api/auth/register");
         RegisterDtoResponse registerDtoResponse = registerRestClient.postRequest(om.writeValueAsString(registerDtoRequest), RegisterDtoResponse.class);
@@ -38,7 +38,7 @@ public class AuthentificationController {
         throw new UserAlreadyExistException();
     }
 
-    @PostMapping("login")
+    @PostMapping("/login")
     public ResponseEntity<LoginDtoResponse> login (@RequestBody LoginDtoRequest loginDtoRequest) throws JsonProcessingException, UserNotFoundException {
         return loginMethod(loginDtoRequest);
     }
