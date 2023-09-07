@@ -1,8 +1,8 @@
 package com.example.CarRideService.service;
 
 
-import com.example.CarRideService.dto.CarRideDtoRequest;
-import com.example.CarRideService.dto.CarRideDtoResponse;
+import com.example.CarRideService.dto.CarRideDto.CarRideDtoRequest;
+import com.example.CarRideService.dto.CarRideDto.CarRideDtoResponse;
 import com.example.CarRideService.exception.SeatNegativeNumberException;
 
 import java.util.List;

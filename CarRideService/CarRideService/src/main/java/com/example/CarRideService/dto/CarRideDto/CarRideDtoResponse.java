@@ -1,4 +1,4 @@
-package com.example.CarRideService.dto;
+package com.example.CarRideService.dto.CarRideDto;
 
 import lombok.*;
 

@@ -1,7 +1,7 @@
 package com.example.CarRideService.controller;
 
-import com.example.CarRideService.dto.CarRideDtoRequest;
-import com.example.CarRideService.dto.CarRideDtoResponse;
+import com.example.CarRideService.dto.CarRideDto.CarRideDtoRequest;
+import com.example.CarRideService.dto.CarRideDto.CarRideDtoResponse;
 import com.example.CarRideService.exception.SeatNegativeNumberException;
 import com.example.CarRideService.service.CarRideService;
 import org.springframework.beans.factory.annotation.Autowired;

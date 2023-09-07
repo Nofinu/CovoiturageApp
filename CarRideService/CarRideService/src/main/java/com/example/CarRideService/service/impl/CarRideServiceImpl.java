@@ -1,7 +1,7 @@
 package com.example.CarRideService.service.impl;
 
-import com.example.CarRideService.dto.CarRideDtoRequest;
-import com.example.CarRideService.dto.CarRideDtoResponse;
+import com.example.CarRideService.dto.CarRideDto.CarRideDtoRequest;
+import com.example.CarRideService.dto.CarRideDto.CarRideDtoResponse;
 import com.example.CarRideService.entity.CarRide;
 import com.example.CarRideService.exception.NotFoundException;
 import com.example.CarRideService.exception.SeatNegativeNumberException;
