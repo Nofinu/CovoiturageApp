@@ -25,4 +25,18 @@ public class CommentEditController {
         CommentDtoResponse commentDtoResponse = commentDtoResponseRestClient.postRequest(om.writeValueAsString(commentDtoRequest), CommentDtoResponse.class);
         return new ResponseEntity<>(commentDtoResponse, HttpStatus.OK);
     }
+
+    @PostMapping("update/{id}")
+    public ResponseEntity<CommentDtoResponse> updateComment (@RequestBody CommentDtoRequest commentDtoRequest,@PathVariable int id) throws JsonProcessingException {
+        RestClient<CommentDtoResponse> commentDtoResponseRestClient = new RestClient<>("http://localhost:"+ PortApi.portComm +"/api/comment/update/"+id);
+        CommentDtoResponse commentDtoResponse = commentDtoResponseRestClient.postRequest(om.writeValueAsString(commentDtoRequest), CommentDtoResponse.class);
+        return new ResponseEntity<>(commentDtoResponse, HttpStatus.OK);
+    }
+
+    @GetMapping("delete/{id}")
+    public ResponseEntity<String> deleteComment (@PathVariable int id) throws JsonProcessingException {
+        RestClient<String> commentDtoResponseRestClient = new RestClient<>("http://localhost:"+ PortApi.portComm +"/api/comment/delete/"+id);
+        String stringResponse = commentDtoResponseRestClient.getRequest( String.class);
+        return new ResponseEntity<>(stringResponse, HttpStatus.OK);
+    }
 }
