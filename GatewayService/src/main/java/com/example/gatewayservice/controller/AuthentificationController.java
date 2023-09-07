@@ -12,13 +12,11 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/auth")
+@CrossOrigin(origins = "*", methods = {RequestMethod.POST})
 public class AuthentificationController {
 
     private ObjectMapper om;
@@ -37,6 +35,7 @@ public class AuthentificationController {
         }
         throw new UserAlreadyExistException();
     }
+
 
     @PostMapping("/login")
     public ResponseEntity<LoginDtoResponse> login (@RequestBody LoginDtoRequest loginDtoRequest) throws JsonProcessingException, UserNotFoundException {
