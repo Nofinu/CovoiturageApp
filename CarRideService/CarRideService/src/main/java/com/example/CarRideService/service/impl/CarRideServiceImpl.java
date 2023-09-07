@@ -45,7 +45,8 @@ public class CarRideServiceImpl implements CarRideService {
        return mapper.mapToDto(updateCarRide);
     }
 
-    private CarRide getCarRideByIdEntity(int idCarRide){
+    @Override
+    public CarRide getCarRideByIdEntity(int idCarRide){
         Optional<CarRide> carRides = carRideRepository.findById(idCarRide);
         if (carRides.isPresent()){
             return carRides.get();
