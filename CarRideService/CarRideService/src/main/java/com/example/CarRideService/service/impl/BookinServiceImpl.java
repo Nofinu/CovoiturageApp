@@ -33,7 +33,7 @@ public class BookinServiceImpl implements BookinService {
     @Override
     public BookingDtoResponse bookASeat(BookingDtoRequest bookingDtoRequest) throws SeatNegativeNumberException {
         CarRide carRide = carRideService.getCarRideByIdEntity(bookingDtoRequest.getId_carRide());
-        if (carRide.getSeatAvailable() < 0) {
+        if (carRide.getSeatAvailable() > 0) {
             carRide.setSeatAvailable(carRide.getSeatAvailable() - 1);
             Booking booking = new Booking(bookingDtoRequest.getId_User(), carRide);
             carRideRepository.save(carRide);
