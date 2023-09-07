@@ -2,6 +2,7 @@ package com.example.CarRideService.controller;
 
 import com.example.CarRideService.dto.CarRideDtoRequest;
 import com.example.CarRideService.dto.CarRideDtoResponse;
+import com.example.CarRideService.exception.SeatNegativeNumberException;
 import com.example.CarRideService.service.CarRideService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/carRide")
+@RequestMapping("/api/car_ride")
 public class CarRideController {
     @Autowired
     private CarRideService carRideService;
@@ -24,7 +25,7 @@ public class CarRideController {
     }
     @PostMapping("/update/{id_carRide}")
     public ResponseEntity<CarRideDtoResponse> updateCarRide(@PathVariable(value = "id_carRide")int id_carRide,
-                                                             @RequestBody CarRideDtoRequest carRideDtoRequest){
+                                                             @RequestBody CarRideDtoRequest carRideDtoRequest) throws SeatNegativeNumberException {
         return new ResponseEntity<>(carRideService.updateCarRide(id_carRide,carRideDtoRequest),HttpStatus.OK);
 
     }

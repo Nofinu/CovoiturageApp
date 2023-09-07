@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class CarRideDtoResponse {
     private int id_carRide;
     private int id_user_driver;
-    private String depart_point;
+    private String start_point;
     private String end_point;
     private int seatMax;
     private int seatAvailable;

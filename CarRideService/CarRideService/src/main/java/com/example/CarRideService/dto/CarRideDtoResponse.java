@@ -13,7 +13,8 @@ public class CarRideDtoResponse {
     private int id_comment;
     private String depart_point;
     private String end_point;
-    private String seat;
-    private String price;
+    private int seatMax;
+    private int seatAvailable;
+    private float price;
 
 }

@@ -4,6 +4,7 @@ import com.example.CarRideService.dto.CarRideDtoRequest;
 import com.example.CarRideService.dto.CarRideDtoResponse;
 import com.example.CarRideService.entity.CarRide;
 import com.example.CarRideService.exception.NotFoundException;
+import com.example.CarRideService.exception.SeatNegativeNumberException;
 import com.example.CarRideService.repository.CarRideRepository;
 import com.example.CarRideService.service.CarRideService;
 import com.example.CarRideService.utils.Mapper;
@@ -24,19 +25,23 @@ public class CarRideServiceImpl implements CarRideService {
 
     @Override
     public CarRideDtoResponse createCarRide(CarRideDtoRequest carRideDtoRequest) {
-        CarRide carRide =mapper.mapToEntity(carRideDtoRequest);
+        CarRide carRide = new CarRide(carRideDtoRequest.getStart_point(),carRideDtoRequest.getEnd_point(),carRideDtoRequest.getSeatMax(),carRideDtoRequest.getPrice(),carRideDtoRequest.getId_user_driver());
         CarRide newCarRide = carRideRepository.save(carRide);
         return mapper.mapToDto(newCarRide);
     }
 
     @Override
-    public CarRideDtoResponse updateCarRide(int idCarRide, CarRideDtoRequest carRideDtoRequest) {
-       CarRide carRide = getCarRideByIdEntity(idCarRide);
-       carRide.setDepart_point(carRideDtoRequest.getDepart_point());
-       carRide.setEnd_point(carRideDtoRequest.getEnd_point());
-       carRide.setSeat(carRideDtoRequest.getSeat());
-       carRide.setPrice(carRideDtoRequest.getPrice());
-       CarRide updateCarRide = carRideRepository.save(carRide);
+    public CarRideDtoResponse updateCarRide(int idCarRide, CarRideDtoRequest carRideDtoRequest) throws SeatNegativeNumberException {
+       CarRide carRideFind = getCarRideByIdEntity(idCarRide);
+       carRideFind.setStart_point(carRideDtoRequest.getStart_point());
+       carRideFind.setEnd_point(carRideDtoRequest.getEnd_point());
+       carRideFind.setSeatAvailable(carRideFind.getSeatAvailable()-(carRideFind.getSeatMax()-carRideDtoRequest.getSeatMax()));
+       if(carRideFind.getSeatAvailable() < 0){
+           throw new SeatNegativeNumberException();
+       }
+       carRideFind.setSeatMax(carRideDtoRequest.getSeatMax());
+       carRideFind.setPrice(carRideDtoRequest.getPrice());
+       CarRide updateCarRide = carRideRepository.save(carRideFind);
        return mapper.mapToDto(updateCarRide);
     }
 

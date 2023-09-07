@@ -9,9 +9,9 @@ import lombok.*;
 @ToString
 public class CarRideDtoRequest {
     private int id_user_driver;
-    private String depart_point;
+    private String start_point;
     private String end_point;
-    private String seat;
-    private String price;
+    private int seatMax;
+    private float price;
 
 }
