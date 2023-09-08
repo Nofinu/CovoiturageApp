@@ -15,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/car_ride")
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET,RequestMethod.POST})
 public class CarRideEditController {
 
     private ObjectMapper om;

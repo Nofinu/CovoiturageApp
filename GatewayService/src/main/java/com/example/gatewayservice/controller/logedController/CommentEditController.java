@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/comment")
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET,RequestMethod.POST})
 public class CommentEditController {
 
     private ObjectMapper om;

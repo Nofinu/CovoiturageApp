@@ -1,10 +1,10 @@
-package com.example.CarRideService.dto.BookingDto;
+package com.example.gatewayservice.dto.BookingDto;
 
-import com.example.CarRideService.dto.CarRideDto.CarRideDtoResponse;
-import com.example.CarRideService.entity.CarRide;
+import com.example.gatewayservice.dto.CarRIdeDto.CarRideDtoResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 @Data
 @NoArgsConstructor

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/user")
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET})
 public class UserController {
     @GetMapping("/{id}")
     public ResponseEntity<UserDtoResponse> findUserById (@PathVariable int id){

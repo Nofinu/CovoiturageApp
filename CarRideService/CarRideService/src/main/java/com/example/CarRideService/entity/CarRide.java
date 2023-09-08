@@ -18,12 +18,13 @@ public class CarRide {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_carRide;
+    private int id_user_driver;
     private String start_point;
     private String end_point;
     private int seatMax;
     private int seatAvailable;
     private float price;
-    private int id_user_driver;
+
 
     public CarRide(String start_point, String end_point, int seatMax, float price, int id_user_driver) {
         this.start_point = start_point;
