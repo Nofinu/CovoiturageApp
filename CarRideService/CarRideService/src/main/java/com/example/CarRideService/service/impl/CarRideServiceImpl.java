@@ -11,6 +11,7 @@ import com.example.CarRideService.utils.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -25,7 +26,7 @@ public class CarRideServiceImpl implements CarRideService {
 
     @Override
     public CarRideDtoResponse createCarRide(CarRideDtoRequest carRideDtoRequest) {
-        CarRide carRide = new CarRide(carRideDtoRequest.getStart_point(),carRideDtoRequest.getEnd_point(),carRideDtoRequest.getSeatMax(),carRideDtoRequest.getPrice(),carRideDtoRequest.getId_user_driver());
+        CarRide carRide = new CarRide(carRideDtoRequest.getStart_point(),carRideDtoRequest.getEnd_point(),carRideDtoRequest.getSeatMax(),carRideDtoRequest.getPrice(),carRideDtoRequest.getId_user_driver(), LocalDate.parse(carRideDtoRequest.getStartDateStr()));
         CarRide newCarRide = carRideRepository.save(carRide);
         return mapper.mapToDto(newCarRide);
     }
@@ -36,6 +37,7 @@ public class CarRideServiceImpl implements CarRideService {
        carRideFind.setStart_point(carRideDtoRequest.getStart_point());
        carRideFind.setEnd_point(carRideDtoRequest.getEnd_point());
        carRideFind.setSeatAvailable(carRideFind.getSeatAvailable()-(carRideFind.getSeatMax()-carRideDtoRequest.getSeatMax()));
+       carRideFind.setStartDate(LocalDate.parse(carRideDtoRequest.getStartDateStr()));
        if(carRideFind.getSeatAvailable() < 0){
            throw new SeatNegativeNumberException();
        }

@@ -13,12 +13,12 @@ public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private int id_User;
+    private int iduser;
     @ManyToOne
     private CarRide carRide;
 
     public Booking(int id_User, CarRide carRide) {
-        this.id_User = id_User;
+        this.iduser = id_User;
         this.carRide = carRide;
     }
 }

@@ -1,6 +1,9 @@
 package com.example.CarRideService.dto.CarRideDto;
 
 import lombok.*;
+import org.springframework.cglib.core.Local;
+
+import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
@@ -14,6 +17,7 @@ public class CarRideDtoResponse {
     private String end_point;
     private int seatMax;
     private int seatAvailable;
+    private LocalDate startDate;
     private float price;
 
 }

@@ -38,7 +38,7 @@ public class BookinServiceImpl implements BookinService {
             Booking booking = new Booking(bookingDtoRequest.getId_User(), carRide);
             carRideRepository.save(carRide);
             Booking bookingRegister = bookingRepository.save(booking);
-            return new BookingDtoResponse(booking.getId(), bookingRegister.getId_User(), bookingRegister.getCarRide());
+            return new BookingDtoResponse(booking.getId(), bookingRegister.getIduser(), carRideService.getCarRideById(bookingRegister.getCarRide().getId_carRide()));
         } else {
             throw new SeatNegativeNumberException();
         }
@@ -47,7 +47,7 @@ public class BookinServiceImpl implements BookinService {
     @Override
     public boolean unBookASeat(BookingDtoRequest bookingDtoRequest) {
         CarRide carRide = carRideService.getCarRideByIdEntity(bookingDtoRequest.getId_carRide());
-        Booking booking = bookingRepository.findBookingByuserIdAndCarRide(bookingDtoRequest.getId_User(), carRide);
+        Booking booking = bookingRepository.findBookingById_userAndCarRide(bookingDtoRequest.getId_User(), carRide);
         if (booking != null) {
             bookingRepository.delete(booking);
             if (carRide.getSeatAvailable() < carRide.getSeatMax()) {
@@ -65,7 +65,7 @@ public class BookinServiceImpl implements BookinService {
         CarRide carRide = carRideService.getCarRideByIdEntity(id);
         List<BookingDtoResponse> bookingDtoResponses = new ArrayList<>();
         bookingRepository.findBookingByCarRide(carRide).forEach(b -> {
-            bookingDtoResponses.add(new BookingDtoResponse(b.getId(),b.getId_User(),b.getCarRide()));
+            bookingDtoResponses.add(new BookingDtoResponse(b.getId(),b.getIduser(),carRideService.getCarRideById(b.getCarRide().getId_carRide())));
         });
         return bookingDtoResponses;
     }
@@ -73,8 +73,8 @@ public class BookinServiceImpl implements BookinService {
     @Override
     public List<BookingDtoResponse> findAllBookingByUserId(int id) {
         List<BookingDtoResponse> bookingDtoResponses = new ArrayList<>();
-        bookingRepository.findBookingById_User(id).forEach(b -> {
-            bookingDtoResponses.add(new BookingDtoResponse(b.getId(),b.getId_User(),b.getCarRide()));
+        bookingRepository.findBookingByIduser(id).forEach(b -> {
+            bookingDtoResponses.add(new BookingDtoResponse(b.getId(),b.getIduser(),carRideService.getCarRideById(b.getCarRide().getId_carRide())));
         });
         return bookingDtoResponses;
     }

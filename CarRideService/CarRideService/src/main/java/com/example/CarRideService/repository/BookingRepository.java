@@ -10,10 +10,10 @@ import java.util.List;
 
 @Repository
 public interface BookingRepository extends CrudRepository<Booking,Integer> {
-    @Query("SELECT b from Booking as b where b.id_User = ?1 and b.carRide = ?2 ")
-    Booking findBookingByuserIdAndCarRide (int id, CarRide carRide);
+    @Query("SELECT b from Booking as b where b.iduser = ?1 and b.carRide = ?2 ")
+    Booking findBookingById_userAndCarRide (int id, CarRide carRide);
 
     List<Booking> findBookingByCarRide (CarRide carRide);
 
-    List<Booking> findBookingById_User (int userId);
+    List<Booking> findBookingByIduser (int userId);
 }

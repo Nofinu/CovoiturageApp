@@ -9,6 +9,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -21,17 +23,19 @@ public class CarRide {
     private int id_user_driver;
     private String start_point;
     private String end_point;
+    private LocalDate startDate;
     private int seatMax;
     private int seatAvailable;
     private float price;
 
 
-    public CarRide(String start_point, String end_point, int seatMax, float price, int id_user_driver) {
+    public CarRide(String start_point, String end_point, int seatMax, float price, int id_user_driver,LocalDate startDate) {
         this.start_point = start_point;
         this.end_point = end_point;
         this.seatMax = seatMax;
         this.seatAvailable = seatMax;
         this.price = price;
         this.id_user_driver = id_user_driver;
+        this.startDate = startDate;
     }
 }
