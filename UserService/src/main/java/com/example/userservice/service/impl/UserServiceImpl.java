@@ -25,4 +25,13 @@ public class UserServiceImpl implements UserService {
         }
         throw new NotFoundException();
     }
+
+    @Override
+    public UserDtoResponse findByEmail(String email) {
+        UserApp userApp = userRepository.findByEmail(email);
+        if(userApp != null){
+            return new UserDtoResponse(userApp.getId_user(),userApp.getEmail(), userApp.getLastname(), userApp.getFirstname(), userApp.getPhone(), userApp.getRole().ordinal());
+        }
+        return null;
+    }
 }

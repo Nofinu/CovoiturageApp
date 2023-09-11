@@ -1,5 +1,6 @@
 package com.example.userservice.controller;
 
+import com.example.userservice.dto.UserDtoRequest;
 import com.example.userservice.dto.UserDtoResponse;
 import com.example.userservice.entity.UserApp;
 import com.example.userservice.service.UserService;
@@ -18,5 +19,10 @@ public class UserController {
     @GetMapping("/{id}")
     public ResponseEntity<UserDtoResponse> findById (@PathVariable int id){
         return new ResponseEntity<>(userService.findById(id), HttpStatus.OK);
+    }
+
+    @GetMapping("/findbyemail")
+    public ResponseEntity<UserDtoResponse> findByEmail (@RequestBody UserDtoRequest userDtoRequest){
+        return new ResponseEntity<>(userService.findByEmail(userDtoRequest.getEmail()),HttpStatus.OK);
     }
 }
