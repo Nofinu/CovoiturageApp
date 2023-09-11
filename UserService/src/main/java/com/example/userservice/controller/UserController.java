@@ -21,7 +21,7 @@ public class UserController {
         return new ResponseEntity<>(userService.findById(id), HttpStatus.OK);
     }
 
-    @GetMapping("/findbyemail")
+    @PostMapping("/findbyemail")
     public ResponseEntity<UserDtoResponse> findByEmail (@RequestBody UserDtoRequest userDtoRequest){
         return new ResponseEntity<>(userService.findByEmail(userDtoRequest.getEmail()),HttpStatus.OK);
     }
