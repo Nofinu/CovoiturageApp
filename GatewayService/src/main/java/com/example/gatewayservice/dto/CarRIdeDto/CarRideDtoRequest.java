@@ -12,5 +12,6 @@ public class CarRideDtoRequest {
     private String start_point;
     private String end_point;
     private int seatMax;
+    private String startDateStr;
     private float price;
 }

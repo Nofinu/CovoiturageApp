@@ -23,13 +23,13 @@ public class CommentsController {
         return new ResponseEntity<>(commentsService.createComment(commentsDtoRequest), HttpStatus.CREATED);
     }
     @PostMapping("/update/{id_comment}")
-    public ResponseEntity<CommentsDtoResponse> updateComment(@PathVariable(value = "id_comment")int id_comment,
+    public ResponseEntity<CommentsDtoResponse> updateComment(@PathVariable(value = "id_comment")String id_comment,
                                                             @RequestBody CommentsDtoRequest commentsDtoRequest){
         return new ResponseEntity<>(commentsService.updateComment(id_comment,commentsDtoRequest),HttpStatus.OK);
 
     }
     @GetMapping("/delete/{id_comment}")
-    public ResponseEntity<String> deleteComment(@PathVariable(value = "id_comment")int id_comment){
+    public ResponseEntity<String> deleteComment(@PathVariable(value = "id_comment")String id_comment){
        if(commentsService.deleteComment(id_comment)){
            return new ResponseEntity<>("Comment delete ",HttpStatus.OK);
        }
@@ -37,7 +37,7 @@ public class CommentsController {
     }
 
     @GetMapping("/{id_comment}")
-    public ResponseEntity<CommentsDtoResponse> getCommentById(@PathVariable(value = "id_comment")int id_comment){
+    public ResponseEntity<CommentsDtoResponse> getCommentById(@PathVariable(value = "id_comment")String id_comment){
         return new ResponseEntity<>(commentsService.getCommentById(id_comment),HttpStatus.OK);
     }
     @GetMapping("")

@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CommentDtoResponse {
-    private int id_comment;
+    private String id_comment;
     private int id_user;
     private int id_carRide;
     private  float note;

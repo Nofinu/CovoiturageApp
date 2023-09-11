@@ -22,7 +22,7 @@ public class CommentController {
         return new ResponseEntity<>(commentDtoResponses, HttpStatus.OK);
     }
     @GetMapping("/{id}")
-    public ResponseEntity<CommentDtoResponse> getCommentById (@PathVariable int id){
+    public ResponseEntity<CommentDtoResponse> getCommentById (@PathVariable String id){
         RestClient<CommentDtoResponse> commentRestCLient = new RestClient<>("http://localhost:"+ PortApi.portComm +"/api/comment/"+id);
         CommentDtoResponse commentDtoResponse = commentRestCLient.getRequest(CommentDtoResponse.class);
         return new ResponseEntity<>(commentDtoResponse, HttpStatus.OK);

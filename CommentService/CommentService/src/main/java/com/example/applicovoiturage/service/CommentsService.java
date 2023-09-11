@@ -14,11 +14,11 @@ public interface CommentsService {
 
     CommentsDtoResponse createComment(CommentsDtoRequest commentsDtoRequest);
 
-    CommentsDtoResponse updateComment(int idComment,CommentsDtoRequest commentsDtoRequest);
+    CommentsDtoResponse updateComment(String idComment,CommentsDtoRequest commentsDtoRequest);
 
 
 
-    boolean deleteComment(int idComment);
+    boolean deleteComment(String idComment);
 
-    CommentsDtoResponse getCommentById(int idComment);
+    CommentsDtoResponse getCommentById(String idComment);
 }

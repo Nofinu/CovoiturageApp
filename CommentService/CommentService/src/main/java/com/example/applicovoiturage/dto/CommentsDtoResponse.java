@@ -12,7 +12,7 @@ import java.util.Date;
 @Builder
 @ToString
 public class CommentsDtoResponse {
-    private int id_comment;
+    private String id_comment;
     private int id_user;
     private int id_carRide;
     private  float note;

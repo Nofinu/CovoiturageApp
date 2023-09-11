@@ -1,24 +1,22 @@
-package com.example.applicovoiturage.entity;
+package com.example.applicovoiturage.model;
 
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name = "comment")
+@Document("comment")
 public class Comment {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_comment;
+    private String id_comment;
     private int id_user;
     private int id_carRide;
     private float note;

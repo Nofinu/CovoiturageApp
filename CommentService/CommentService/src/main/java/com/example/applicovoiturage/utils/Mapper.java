@@ -2,7 +2,7 @@ package com.example.applicovoiturage.utils;
 
 import com.example.applicovoiturage.dto.CommentsDtoRequest;
 import com.example.applicovoiturage.dto.CommentsDtoResponse;
-import com.example.applicovoiturage.entity.Comment;
+import com.example.applicovoiturage.model.Comment;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
