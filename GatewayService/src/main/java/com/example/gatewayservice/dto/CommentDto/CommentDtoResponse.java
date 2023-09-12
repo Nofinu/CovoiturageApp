@@ -10,9 +10,10 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CommentDtoResponse {
-    private String id_comment;
-    private int id_user;
-    private int id_carRide;
+    private String idComment;
+    private int idUser;
+    private int idCarRide;
+    private int idDriver;
     private  float note;
     private String comment;
     private LocalDate date;

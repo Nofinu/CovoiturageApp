@@ -8,8 +8,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CommentDtoRequest {
-    private int id_user;
-    private int id_carRide;
+    private int idUser;
+    private int idCarRide;
+    private int idDriver;
     private  float note;
     private String comment;
     private String date;

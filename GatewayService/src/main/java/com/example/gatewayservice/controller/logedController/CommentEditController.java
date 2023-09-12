@@ -25,7 +25,7 @@ public class CommentEditController {
     public ResponseEntity<CommentDtoResponse> createComment (@RequestBody CommentDtoRequest commentDtoRequest) throws JsonProcessingException, AlreadyExistException {
         RestClient<CommentDtoResponse> commentDtoResponseRestClient = new RestClient<>("http://localhost:"+ PortApi.portComm +"/api/comment/create");
         CommentDtoResponse commentDtoResponse = commentDtoResponseRestClient.postRequest(om.writeValueAsString(commentDtoRequest), CommentDtoResponse.class);
-        if(commentDtoResponse.getId_comment() == null){
+        if(commentDtoResponse.getIdComment() == null){
             throw new AlreadyExistException("Comment");
         }
         return new ResponseEntity<>(commentDtoResponse, HttpStatus.OK);
