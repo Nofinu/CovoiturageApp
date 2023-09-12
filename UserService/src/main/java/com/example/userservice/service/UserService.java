@@ -7,4 +7,6 @@ import org.springframework.stereotype.Service;
 @Service
 public interface UserService {
     UserDtoResponse findById (int id);
+
+    UserDtoResponse findByEmail (String email);
 }
