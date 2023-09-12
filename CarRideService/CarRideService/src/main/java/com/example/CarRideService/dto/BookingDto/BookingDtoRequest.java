@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BookingDtoRequest {
-    private int id_User;
-    private int id_carRide;
+    private int iduser;
+    private int idcarRide;
 }

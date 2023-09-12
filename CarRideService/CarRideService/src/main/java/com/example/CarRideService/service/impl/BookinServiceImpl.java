@@ -32,10 +32,10 @@ public class BookinServiceImpl implements BookinService {
 
     @Override
     public BookingDtoResponse bookASeat(BookingDtoRequest bookingDtoRequest) throws SeatNegativeNumberException {
-        CarRide carRide = carRideService.getCarRideByIdEntity(bookingDtoRequest.getId_carRide());
+        CarRide carRide = carRideService.getCarRideByIdEntity(bookingDtoRequest.getIdcarRide());
         if (carRide.getSeatAvailable() > 0) {
             carRide.setSeatAvailable(carRide.getSeatAvailable() - 1);
-            Booking booking = new Booking(bookingDtoRequest.getId_User(), carRide);
+            Booking booking = new Booking(bookingDtoRequest.getIduser(), carRide);
             carRideRepository.save(carRide);
             Booking bookingRegister = bookingRepository.save(booking);
             return new BookingDtoResponse(booking.getId(), bookingRegister.getIduser(), carRideService.getCarRideById(bookingRegister.getCarRide().getId_carRide()));
@@ -46,8 +46,8 @@ public class BookinServiceImpl implements BookinService {
 
     @Override
     public boolean unBookASeat(BookingDtoRequest bookingDtoRequest) {
-        CarRide carRide = carRideService.getCarRideByIdEntity(bookingDtoRequest.getId_carRide());
-        Booking booking = bookingRepository.findBookingById_userAndCarRide(bookingDtoRequest.getId_User(), carRide);
+        CarRide carRide = carRideService.getCarRideByIdEntity(bookingDtoRequest.getIdcarRide());
+        Booking booking = bookingRepository.findBookingById_userAndCarRide(bookingDtoRequest.getIduser(), carRide);
         if (booking != null) {
             bookingRepository.delete(booking);
             if (carRide.getSeatAvailable() < carRide.getSeatMax()) {

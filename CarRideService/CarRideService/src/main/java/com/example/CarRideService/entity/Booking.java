@@ -17,8 +17,8 @@ public class Booking {
     @ManyToOne
     private CarRide carRide;
 
-    public Booking(int id_User, CarRide carRide) {
-        this.iduser = id_User;
+    public Booking(int iduser, CarRide carRide) {
+        this.iduser = iduser;
         this.carRide = carRide;
     }
 }

@@ -11,6 +11,6 @@ import lombok.NonNull;
 @AllArgsConstructor
 public class BookingDtoResponse {
     private int id_Booking;
-    private int id_User;
+    private int iduser;
     private CarRideDtoResponse carRide;
 }
