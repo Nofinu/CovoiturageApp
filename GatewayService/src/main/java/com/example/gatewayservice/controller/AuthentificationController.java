@@ -4,7 +4,7 @@ import com.example.gatewayservice.dto.AuthDto.LoginDtoRequest;
 import com.example.gatewayservice.dto.AuthDto.LoginDtoResponse;
 import com.example.gatewayservice.dto.AuthDto.RegisterDtoRequest;
 import com.example.gatewayservice.dto.AuthDto.RegisterDtoResponse;
-import com.example.gatewayservice.exception.UserAlreadyExistException;
+import com.example.gatewayservice.exception.AlreadyExistException;
 import com.example.gatewayservice.exception.UserNotFoundException;
 import com.example.gatewayservice.tools.RestClient;
 import com.example.gatewayservice.utils.PortApi;
@@ -26,14 +26,14 @@ public class AuthentificationController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<LoginDtoResponse> register (@RequestBody RegisterDtoRequest registerDtoRequest) throws JsonProcessingException, UserAlreadyExistException, UserNotFoundException {
+    public ResponseEntity<LoginDtoResponse> register (@RequestBody RegisterDtoRequest registerDtoRequest) throws JsonProcessingException, AlreadyExistException, UserNotFoundException {
         RestClient<RegisterDtoResponse> registerRestClient = new RestClient<>("http://localhost:"+ PortApi.portAuth +"/api/auth/register");
         RegisterDtoResponse registerDtoResponse = registerRestClient.postRequest(om.writeValueAsString(registerDtoRequest), RegisterDtoResponse.class);
         if(registerDtoResponse.getId() != -1){
             LoginDtoRequest loginDtoRequest = new LoginDtoRequest(registerDtoRequest.getEmail(),registerDtoRequest.getPassword());
             return loginMethod(loginDtoRequest);
         }
-        throw new UserAlreadyExistException();
+        throw new AlreadyExistException("User");
     }
 
 

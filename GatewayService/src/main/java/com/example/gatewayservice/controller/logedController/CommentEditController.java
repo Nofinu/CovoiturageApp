@@ -2,6 +2,7 @@ package com.example.gatewayservice.controller.logedController;
 
 import com.example.gatewayservice.dto.CommentDto.CommentDtoRequest;
 import com.example.gatewayservice.dto.CommentDto.CommentDtoResponse;
+import com.example.gatewayservice.exception.AlreadyExistException;
 import com.example.gatewayservice.tools.RestClient;
 import com.example.gatewayservice.utils.PortApi;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -21,9 +22,12 @@ public class CommentEditController {
         this.om = new ObjectMapper();
     }
     @PostMapping("/create")
-    public ResponseEntity<CommentDtoResponse> createComment (@RequestBody CommentDtoRequest commentDtoRequest) throws JsonProcessingException {
+    public ResponseEntity<CommentDtoResponse> createComment (@RequestBody CommentDtoRequest commentDtoRequest) throws JsonProcessingException, AlreadyExistException {
         RestClient<CommentDtoResponse> commentDtoResponseRestClient = new RestClient<>("http://localhost:"+ PortApi.portComm +"/api/comment/create");
         CommentDtoResponse commentDtoResponse = commentDtoResponseRestClient.postRequest(om.writeValueAsString(commentDtoRequest), CommentDtoResponse.class);
+        if(commentDtoResponse.getId_comment() == null){
+            throw new AlreadyExistException("Comment");
+        }
         return new ResponseEntity<>(commentDtoResponse, HttpStatus.OK);
     }
 

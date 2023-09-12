@@ -3,6 +3,7 @@ package com.example.applicovoiturage.controller;
 
 import com.example.applicovoiturage.dto.CommentsDtoRequest;
 import com.example.applicovoiturage.dto.CommentsDtoResponse;
+import com.example.applicovoiturage.exception.AlreadyExistException;
 import com.example.applicovoiturage.service.CommentsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,7 +20,7 @@ public class CommentsController {
     private CommentsService commentsService;
 
     @PostMapping("/create")
-    public ResponseEntity<CommentsDtoResponse> createComment(@RequestBody CommentsDtoRequest commentsDtoRequest){
+    public ResponseEntity<CommentsDtoResponse> createComment(@RequestBody CommentsDtoRequest commentsDtoRequest) throws AlreadyExistException {
         return new ResponseEntity<>(commentsService.createComment(commentsDtoRequest), HttpStatus.CREATED);
     }
     @PostMapping("/update/{id_comment}")
@@ -44,6 +45,5 @@ public class CommentsController {
     public ResponseEntity<List<CommentsDtoResponse>> getAllPComment(){
         return new ResponseEntity<>(commentsService.getAllComment(), HttpStatus.OK);
     }
-
 
     }

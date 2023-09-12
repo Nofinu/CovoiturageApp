@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
 public class GeneralGatewayExceptionHandler {
-    @ExceptionHandler(UserAlreadyExistException.class)
-    public ResponseEntity<String> userAlreadyExistExceptionHandler (UserAlreadyExistException ex){
+    @ExceptionHandler(AlreadyExistException.class)
+    public ResponseEntity<String> AlreadyExistExceptionHandler (AlreadyExistException ex){
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 

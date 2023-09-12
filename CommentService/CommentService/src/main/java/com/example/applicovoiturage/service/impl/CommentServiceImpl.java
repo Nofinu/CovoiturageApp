@@ -2,6 +2,7 @@ package com.example.applicovoiturage.service.impl;
 
 import com.example.applicovoiturage.dto.CommentsDtoRequest;
 import com.example.applicovoiturage.dto.CommentsDtoResponse;
+import com.example.applicovoiturage.exception.AlreadyExistException;
 import com.example.applicovoiturage.model.Comment;
 import com.example.applicovoiturage.exception.NotFoundException;
 import com.example.applicovoiturage.repository.CommentRepositoryMongo;
@@ -28,11 +29,14 @@ public class CommentServiceImpl implements CommentsService {
 
 
     @Override
-    public CommentsDtoResponse createComment(CommentsDtoRequest commentsDtoRequest) {
-        Comment comment = mapper.mapToEntity(commentsDtoRequest);
-        comment.setDate(LocalDate.parse(commentsDtoRequest.getDate()));
-        Comment newComment = commentRepositoryMongo.save(comment);
-        return mapper.mapToDto(newComment);
+    public CommentsDtoResponse createComment(CommentsDtoRequest commentsDtoRequest) throws AlreadyExistException {
+        if(getCommentByIdCarRideAndIdUser(commentsDtoRequest.getIdCarRide(),commentsDtoRequest.getIdUser()) == null){
+            Comment comment = mapper.mapToEntity(commentsDtoRequest);
+            comment.setDate(LocalDate.parse(commentsDtoRequest.getDate()));
+            Comment newComment = commentRepositoryMongo.save(comment);
+            return mapper.mapToDto(newComment);
+        }
+        throw new AlreadyExistException();
     }
 
     @Override
@@ -41,7 +45,6 @@ public class CommentServiceImpl implements CommentsService {
         comment.setComment(commentsDtoRequest.getComment());
         comment.setDate(LocalDate.parse(commentsDtoRequest.getDate()));
         comment.setNote(commentsDtoRequest.getNote());
-        comment.setId_carRide(commentsDtoRequest.getId_carRide());
         Comment updateComment = commentRepositoryMongo.save(comment);
         return mapper.mapToDto(updateComment);
     }
@@ -75,6 +78,15 @@ public class CommentServiceImpl implements CommentsService {
           return mapper.mapToDto(comments.get());
       }
         throw new NotFoundException();
+    }
+
+    @Override
+    public CommentsDtoResponse getCommentByIdCarRideAndIdUser(int idCarRide, int idUser) {
+        Comment commentFind = commentRepositoryMongo.findCommentByIdCarRideAndIdUser(idCarRide,idUser);
+        if(commentFind != null){
+            return mapper.mapToDto(commentFind);
+        }
+        return null;
     }
 
     private Comment getCommentByIdEntity(String idComment) {
