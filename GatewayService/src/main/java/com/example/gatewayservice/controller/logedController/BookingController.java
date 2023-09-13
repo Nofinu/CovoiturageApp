@@ -49,9 +49,10 @@ public class BookingController {
         return new ResponseEntity<>(bookingDtoResponse,HttpStatus.OK);
     }
 
-    @PostMapping("/unbook_car_ride")
-    public ResponseEntity<String> unsetBooking (@RequestBody BookingDtoRequest bookingDtoRequest) throws JsonProcessingException {
+    @GetMapping("/unbook_car_ride/{userId}/{carRideId}")
+    public ResponseEntity<String> unsetBooking (@PathVariable int userId, @PathVariable int carRideId) throws JsonProcessingException {
         RestClient<String> bookingRestClient =  new RestClient<>("http://localhost:"+ PortApi.portCarRide +"/api/booking/unbook_car_ride");
+        BookingDtoRequest bookingDtoRequest = new BookingDtoRequest(userId,carRideId);
         String stringResponse = bookingRestClient.postRequest(om.writeValueAsString(bookingDtoRequest), String.class);
         return new ResponseEntity<>(stringResponse,HttpStatus.OK);
     }

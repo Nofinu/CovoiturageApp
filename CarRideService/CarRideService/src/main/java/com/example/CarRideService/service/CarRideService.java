@@ -15,4 +15,5 @@ public interface CarRideService {
     CarRideDtoResponse getCarRideById(int idCarRide) ;
    List<CarRideDtoResponse> getAllPCarRide() ;
     CarRide getCarRideByIdEntity(int idCarRide);
+    List<CarRideDtoResponse> findAllwithoutUserId(int idUser);
 }

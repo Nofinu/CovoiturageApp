@@ -18,15 +18,22 @@ public class CarRIdeController {
 
     @GetMapping("")
     public ResponseEntity<List<CarRideDtoResponse>> getAllCarRide (){
-        RestClient<CarRideDtoResponse[]> carRIdeRestCLient = new RestClient<>("http://localhost:"+ PortApi.portCarRide +"/api/car_ride");
-        List<CarRideDtoResponse> CarRideDtoResponses = Arrays.stream(carRIdeRestCLient.getRequest(CarRideDtoResponse[].class)).toList();
-        return new ResponseEntity<>(CarRideDtoResponses, HttpStatus.OK);
+        RestClient<CarRideDtoResponse[]> carRideRestCLient = new RestClient<>("http://localhost:"+ PortApi.portCarRide +"/api/car_ride");
+        List<CarRideDtoResponse> carRideDtoResponses = Arrays.stream(carRideRestCLient.getRequest(CarRideDtoResponse[].class)).toList();
+        return new ResponseEntity<>(carRideDtoResponses, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<CarRideDtoResponse> getCarRideById (@PathVariable int id){
-        RestClient<CarRideDtoResponse> carRIdeRestCLient = new RestClient<>("http://localhost:"+ PortApi.portCarRide +"/api/car_ride/"+id);
-        CarRideDtoResponse CarRideDtoResponse = carRIdeRestCLient.getRequest(CarRideDtoResponse.class);
-        return new ResponseEntity<>(CarRideDtoResponse, HttpStatus.OK);
+        RestClient<CarRideDtoResponse> carRideRestCLient = new RestClient<>("http://localhost:"+ PortApi.portCarRide +"/api/car_ride/"+id);
+        CarRideDtoResponse carRideDtoResponse = carRideRestCLient.getRequest(CarRideDtoResponse.class);
+        return new ResponseEntity<>(carRideDtoResponse, HttpStatus.OK);
+    }
+
+    @GetMapping("/car_ride_without/{idUser}")
+    public ResponseEntity<List<CarRideDtoResponse>> getAllCarRideWithoutUser (@PathVariable int idUser){
+        RestClient<CarRideDtoResponse[]> carRideRestCLient = new RestClient<>("http://localhost:"+ PortApi.portCarRide +"/api/car_ride/car_ride_without/"+idUser);
+        List<CarRideDtoResponse> carRideDtoResponses = Arrays.stream(carRideRestCLient.getRequest(CarRideDtoResponse[].class)).toList();
+        return new ResponseEntity<>(carRideDtoResponses,HttpStatus.OK);
     }
 }

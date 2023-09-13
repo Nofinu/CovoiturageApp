@@ -5,6 +5,7 @@ import com.example.CarRideService.dto.BookingDto.BookingDtoResponse;
 import com.example.CarRideService.dto.CarRideDto.CarRideDtoResponse;
 import com.example.CarRideService.entity.Booking;
 import com.example.CarRideService.entity.CarRide;
+import com.example.CarRideService.exception.AlreadyExistException;
 import com.example.CarRideService.exception.NotFoundException;
 import com.example.CarRideService.exception.SeatNegativeNumberException;
 import com.example.CarRideService.repository.BookingRepository;
@@ -33,15 +34,19 @@ public class BookinServiceImpl implements BookinService {
     @Override
     public BookingDtoResponse bookASeat(BookingDtoRequest bookingDtoRequest) throws SeatNegativeNumberException {
         CarRide carRide = carRideService.getCarRideByIdEntity(bookingDtoRequest.getIdcarRide());
-        if (carRide.getSeatAvailable() > 0) {
-            carRide.setSeatAvailable(carRide.getSeatAvailable() - 1);
-            Booking booking = new Booking(bookingDtoRequest.getIduser(), carRide);
-            carRideRepository.save(carRide);
-            Booking bookingRegister = bookingRepository.save(booking);
-            return new BookingDtoResponse(booking.getId(), bookingRegister.getIduser(), carRideService.getCarRideById(bookingRegister.getCarRide().getId_carRide()));
-        } else {
-            throw new SeatNegativeNumberException();
+        Booking bookingFind = bookingRepository.findBookingById_userAndCarRide(bookingDtoRequest.getIduser(),carRide);
+        if(bookingFind == null){
+            if (carRide.getSeatAvailable() > 0) {
+                carRide.setSeatAvailable(carRide.getSeatAvailable() - 1);
+                Booking booking = new Booking(bookingDtoRequest.getIduser(), carRide);
+                carRideRepository.save(carRide);
+                Booking bookingRegister = bookingRepository.save(booking);
+                return new BookingDtoResponse(booking.getId(), bookingRegister.getIduser(), carRideService.getCarRideById(bookingRegister.getCarRide().getId_carRide()));
+            } else {
+                throw new SeatNegativeNumberException();
+            }
         }
+      throw new AlreadyExistException();
     }
 
     @Override

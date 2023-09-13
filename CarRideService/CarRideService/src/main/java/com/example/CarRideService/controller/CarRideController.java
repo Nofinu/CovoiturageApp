@@ -45,4 +45,9 @@ public class CarRideController {
     public ResponseEntity<List<CarRideDtoResponse>> getAllPCarRide(){
         return new ResponseEntity<>(carRideService.getAllPCarRide(), HttpStatus.OK);
     }
+
+    @GetMapping("/car_ride_without/{idUser}")
+    public ResponseEntity<List<CarRideDtoResponse>> getAllCarRIdeWithoutUser (@PathVariable int idUser){
+        return new ResponseEntity<>(carRideService.findAllwithoutUserId(idUser),HttpStatus.OK);
+    }
 }
