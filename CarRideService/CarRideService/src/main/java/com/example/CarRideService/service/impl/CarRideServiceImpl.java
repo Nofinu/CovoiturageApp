@@ -66,6 +66,15 @@ public class CarRideServiceImpl implements CarRideService {
     }
 
     @Override
+    public List<CarRideDtoResponse> findAllCarRideByUserId(int idUser) {
+        List<CarRideDtoResponse> carRideDtoResponses = new ArrayList<>();
+        carRideRepository.findAllCarRideByUserId(idUser).forEach(c ->{
+            carRideDtoResponses.add(new CarRideDtoResponse(c.getId_carRide(),c.getId_user_driver(),c.getStart_point(),c.getEnd_point(),c.getSeatMax(),c.getSeatAvailable(),c.getStartDate(),c.getPrice()));
+        });
+        return carRideDtoResponses;
+    }
+
+    @Override
     public boolean deleteCarRide(int idCarRide) {
         try {
             CarRide carRide = getCarRideByIdEntity(idCarRide);

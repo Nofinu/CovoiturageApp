@@ -14,7 +14,7 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private int iduser;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     private CarRide carRide;
 
     public Booking(int iduser, CarRide carRide) {

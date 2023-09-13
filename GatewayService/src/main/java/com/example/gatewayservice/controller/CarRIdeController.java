@@ -36,4 +36,11 @@ public class CarRIdeController {
         List<CarRideDtoResponse> carRideDtoResponses = Arrays.stream(carRideRestCLient.getRequest(CarRideDtoResponse[].class)).toList();
         return new ResponseEntity<>(carRideDtoResponses,HttpStatus.OK);
     }
+
+    @GetMapping("/car_ride/{idUser}")
+    public ResponseEntity<List<CarRideDtoResponse>> getAllCarRideByUserId (@PathVariable int idUser){
+        RestClient<CarRideDtoResponse[]> carRideRestCLient = new RestClient<>("http://localhost:"+ PortApi.portCarRide +"/api/car_ride/car_ride/"+idUser);
+        List<CarRideDtoResponse> carRideDtoResponses = Arrays.stream(carRideRestCLient.getRequest(CarRideDtoResponse[].class)).toList();
+        return new ResponseEntity<>(carRideDtoResponses,HttpStatus.OK);
+    }
 }
