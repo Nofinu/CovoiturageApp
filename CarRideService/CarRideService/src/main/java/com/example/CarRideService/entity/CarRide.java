@@ -1,15 +1,13 @@
 package com.example.CarRideService.entity;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -27,6 +25,9 @@ public class CarRide {
     private int seatMax;
     private int seatAvailable;
     private float price;
+
+    @OneToMany(cascade = CascadeType.REMOVE)
+    private List<Booking> bookings;
 
 
     public CarRide(String start_point, String end_point, int seatMax, float price, int id_user_driver,LocalDate startDate) {

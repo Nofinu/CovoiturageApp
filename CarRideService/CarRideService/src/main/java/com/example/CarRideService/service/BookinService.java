@@ -13,6 +13,7 @@ public interface BookinService {
     boolean unBookASeat (BookingDtoRequest bookingDtoRequest);
     List<BookingDtoResponse> findAllBookingByCarRideId (int id);
     List<BookingDtoResponse> findAllBookingByUserId(int id);
+    BookingDtoResponse findBookingByIdUserAndIdCarRide(int idUser, int idCarRide);
 
 
 }

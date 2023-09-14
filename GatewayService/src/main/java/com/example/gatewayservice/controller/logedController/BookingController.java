@@ -56,4 +56,12 @@ public class BookingController {
         String stringResponse = bookingRestClient.postRequest(om.writeValueAsString(bookingDtoRequest), String.class);
         return new ResponseEntity<>(stringResponse,HttpStatus.OK);
     }
+
+
+    @GetMapping("/isbooked/{userid}/{carrideid}")
+    public ResponseEntity<BookingDtoResponse> findByUserIdAndCarRideId (@PathVariable int userid, @PathVariable int carrideid) throws JsonProcessingException {
+        RestClient<BookingDtoResponse> bookingRestClient =  new RestClient<>("http://localhost:"+ PortApi.portCarRide +"/api/booking/isbooked/"+userid+"/"+carrideid);
+        BookingDtoResponse bookingDtoResponse = bookingRestClient.getRequest(BookingDtoResponse.class);
+        return new ResponseEntity<>(bookingDtoResponse,HttpStatus.OK);
+    }
 }

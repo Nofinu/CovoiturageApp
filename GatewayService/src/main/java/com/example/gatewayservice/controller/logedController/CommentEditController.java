@@ -11,6 +11,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
+import java.util.List;
+
 @RestController
 @RequestMapping("api/comment")
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET,RequestMethod.POST})
@@ -43,5 +46,12 @@ public class CommentEditController {
         RestClient<String> commentDtoResponseRestClient = new RestClient<>("http://localhost:"+ PortApi.portComm +"/api/comment/delete/"+id);
         String stringResponse = commentDtoResponseRestClient.getRequest( String.class);
         return new ResponseEntity<>(stringResponse, HttpStatus.OK);
+    }
+
+    @GetMapping("/usercomment/{iduser}")
+    public ResponseEntity<List<CommentDtoResponse>> getAllCommentByIdUser (@PathVariable int iduser){
+        RestClient<CommentDtoResponse[]> commentRestCLient = new RestClient<>("http://localhost:"+ PortApi.portComm +"/api/comment/usercomment/"+iduser);
+        List<CommentDtoResponse> commentDtoResponses = Arrays.stream(commentRestCLient.getRequest(CommentDtoResponse[].class)).toList();
+        return new ResponseEntity<>(commentDtoResponses, HttpStatus.OK);
     }
 }

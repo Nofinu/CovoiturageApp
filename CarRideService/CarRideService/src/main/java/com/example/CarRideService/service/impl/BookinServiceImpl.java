@@ -83,4 +83,14 @@ public class BookinServiceImpl implements BookinService {
         });
         return bookingDtoResponses;
     }
+
+    @Override
+    public BookingDtoResponse findBookingByIdUserAndIdCarRide(int idUser, int idCarRide) {
+        CarRide carRide = carRideService.getCarRideByIdEntity(idCarRide);
+        Booking booking = bookingRepository.findBookingById_userAndCarRide(idUser,carRide);
+        if(booking != null){
+            return new BookingDtoResponse(booking.getId(),booking.getIduser(),carRideService.getCarRideById(carRide.getId_carRide()));
+        }
+        return null;
+    }
 }

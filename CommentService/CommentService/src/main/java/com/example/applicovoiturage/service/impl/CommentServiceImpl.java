@@ -89,6 +89,15 @@ public class CommentServiceImpl implements CommentsService {
         return null;
     }
 
+    @Override
+    public List<CommentsDtoResponse> getCommentsByIdUser(int idUser) {
+        List<CommentsDtoResponse> commentsDtoResponses = new ArrayList<>();
+        commentRepositoryMongo.findCommentByIdUser(idUser).forEach(c ->{
+            commentsDtoResponses.add(new CommentsDtoResponse(c.getIdComment(),c.getIdUser(),c.getIdCarRide(),c.getIdDriver(),c.getNote(),c.getComment(),c.getDate()));
+        });
+        return commentsDtoResponses;
+    }
+
     private Comment getCommentByIdEntity(String idComment) {
         Optional<Comment> comments = commentRepositoryMongo.findById(idComment);
         if(comments.isPresent()){

@@ -22,4 +22,5 @@ public interface CommentsService {
     CommentsDtoResponse getCommentById(String idComment);
 
     CommentsDtoResponse getCommentByIdCarRideAndIdUser (int idCarRide, int idUser);
+    List<CommentsDtoResponse> getCommentsByIdUser (int idUser);
 }

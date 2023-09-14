@@ -42,4 +42,9 @@ public class BookingController {
     public ResponseEntity<List<BookingDtoResponse>> findAllBookingByCarRideId (@PathVariable int id){
         return new ResponseEntity<>(bookinService.findAllBookingByCarRideId(id),HttpStatus.OK);
     }
+
+    @GetMapping("/isbooked/{iduser}/{idcarride}")
+    public ResponseEntity<BookingDtoResponse> findByUserIdAndCarRideId (@PathVariable int iduser,@PathVariable int idcarride){
+        return new ResponseEntity<>(bookinService.findBookingByIdUserAndIdCarRide(iduser,idcarride),HttpStatus.OK);
+    }
 }

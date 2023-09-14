@@ -46,4 +46,9 @@ public class CommentsController {
         return new ResponseEntity<>(commentsService.getAllComment(), HttpStatus.OK);
     }
 
+    @GetMapping("/usercomment/{iduser}")
+    public ResponseEntity<List<CommentsDtoResponse>> getAllCommentByUserId (@PathVariable int iduser){
+        return new ResponseEntity<>(commentsService.getCommentsByIdUser(iduser),HttpStatus.OK);
+    }
+
     }

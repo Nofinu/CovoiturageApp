@@ -12,7 +12,7 @@ public class CommentsDtoRequest {
     private int idUser;
     private int idCarRide;
     private int idDriver;
-    private  float note;
+    private float note;
     private String comment;
     private String date;
 
